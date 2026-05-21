@@ -1,0 +1,48 @@
+/* Teaser block – Tizen Pharmaceutical */
+
+main .teaser {
+  background: light-dark(var(--color-parchment), var(--color-card-dark));
+  border: var(--border-heritage);
+  border-radius: var(--border-radius-heritage);
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  color: light-dark(var(--color-ink), var(--color-parchment));
+  transition: transform 0.5s var(--ease-out-smooth),
+    box-shadow 0.5s var(--ease-out-smooth),
+    border-color 0.4s var(--ease-out-smooth);
+}
+
+main .teaser:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift-m);
+  border-color: light-dark(var(--color-gold), rgb(0 163 173 / 40%));
+}
+
+main .teaser > div {
+  align-items: center;
+  gap: var(--space-s);
+  padding: var(--space-l) var(--content-padding-inline);
+}
+
+main .teaser > div > div a {
+  color: light-dark(var(--color-rust), var(--color-rust-bright));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--color-gold);
+  padding-inline-start: 0.5em;
+  transition: color 0.3s var(--ease-out-smooth), text-decoration-color 0.3s var(--ease-out-smooth);
+}
+
+main .teaser > div > div a:hover {
+  color: var(--color-gold);
+  text-decoration-color: var(--color-gold);
+}
+
+@media (width >= 900px) {
+  main .teaser > div {
+    padding: var(--space-xl) var(--space-2xl, 48px);
+  }
+}

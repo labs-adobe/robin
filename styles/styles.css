@@ -1,0 +1,679 @@
+/*
+ * Copyright 2020 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+
+/* ==========================================================================
+   Design tokens – Tizen Pharmaceutical
+   ========================================================================== */
+
+:root,
+:host {
+  /* mobile-first breakpoints */
+  --bp-tablet: 600px;
+  --bp-desktop: 900px;
+  --bp-wide: 1200px;
+
+  /* grid */
+  --grid-container-width: 83.4%;
+  --grid-column-width: calc(var(--grid-container-width) / 12);
+  --grid-gutter-width: 8.3%;
+
+  /* spacing scale for consistent global layout */
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 16px;
+  --space-l: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* global layout rhythm */
+  --content-padding-inline: var(--space-m);
+  --main-block-space: var(--space-l);
+  --section-block-space: var(--space-l);
+
+  /* color scheme */
+  color-scheme: light dark;
+
+  /* Tizen clinical palette */
+  --color-rust: #0c2340;
+  --color-gold: #00a3ad;
+  --color-parchment: #f7f9fb;
+  --color-ink: #1a1a2e;
+
+  /* Tizen dark palette */
+  --color-obsidian: #0a1628;
+  --color-card-dark: #111d2e;
+  --color-rust-bright: #2dc5cf;
+  --color-muted: #8b9db0;
+
+  /* color tokens – cool-tinted grays */
+  --color-gray-100: #f0f4f8;
+  --color-gray-200: #d1dae3;
+  --color-gray-300: #b0bdca;
+  --color-gray-400: #8e9eb0;
+  --color-gray-500: #6b7b8d;
+  --color-gray-600: #4e5d6e;
+  --color-gray-700: #364252;
+  --color-gray-800: #222f3e;
+  --color-gray-900: #141e2b;
+  --color-green-100: #e1f5e3;
+  --color-green-200: #a3e1a8;
+  --color-green-300: #60cb6a;
+  --color-green-400: #24b032;
+  --color-green-500: #1e9029;
+  --color-green-600: #187220;
+  --color-teal-100: #e0f5f6;
+  --color-teal-200: #a8e4e8;
+  --color-teal-300: #5ccdd3;
+  --color-teal-400: #00a3ad;
+  --color-teal-500: #007c85;
+  --color-blue-100: #e8f0fb;
+  --color-blue-200: #b3d0f5;
+  --color-blue-300: #7db0ef;
+  --color-blue-400: #4890e9;
+  --color-blue-500: #1570e3;
+  --color-blue-600: #0c5abf;
+  --color-blue-700: #0c2340;
+  --color-purple-100: #f0eaf8;
+  --color-purple-200: #d6c5ed;
+  --color-purple-300: #bc9fe3;
+  --color-purple-400: #a27ad8;
+  --color-purple-500: #8855cd;
+  --color-purple-600: #6e3ab3;
+  --color-red-100: #ffecea;
+  --color-red-200: #ffc4be;
+  --color-red-300: #ff9990;
+  --color-red-400: #ff6759;
+  --color-red-500: #f81400;
+  --color-red-600: #c71000;
+  --color-orange-100: #ffeddc;
+  --color-orange-200: #ffc895;
+  --color-orange-300: #ff9e43;
+  --color-orange-400: #f37500;
+  --color-orange-500: #c76000;
+  --color-yellow-100: #fff48e;
+  --color-yellow-200: #ebd400;
+  --color-yellow-300: #cab600;
+
+  /* semantic / named colors */
+  --color-light: rgb(255 255 255);
+  --color-dark: rgb(0 0 0);
+  --color-text: light-dark(var(--color-ink), var(--color-parchment));
+  --color-link: light-dark(var(--color-ink), var(--color-parchment));
+  --color-link-hover: light-dark(var(--color-rust), var(--color-gold));
+  --color-brand: var(--color-rust);
+  --color-accent: var(--color-gold);
+  --color-shaded: light-dark(var(--color-parchment), var(--color-card-dark));
+
+  /* fonts – Inter for clinical precision */
+  --font-family: inter, "Segoe UI", sans-serif;
+  --font-family-serif: inter, "Segoe UI", sans-serif;
+  --font-family-mono: "JetBrains Mono", "Courier New", monospace;
+  --body-font-family: var(--font-family);
+  --heading-font-family: var(--font-family);
+
+  /* heading sizes */
+  --heading-font-size-xxl: 32.44px;
+  --heading-font-size-xl: 28.83px;
+  --heading-font-size-l: 25.63px;
+  --heading-font-size-m: 22.78px;
+  --heading-font-size-s: 20.25px;
+  --heading-font-size-xs: 18px;
+  --heading-line-height: 1.2;
+
+  /* body sizes */
+  --body-font-size-xxxl: 25px;
+  --body-font-size-xxl: 22px;
+  --body-font-size-xl: 20px;
+  --body-font-size-l: 18px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-line-height: 1.6;
+
+  /* nav / layout */
+  --nav-height: 64px;
+  --header-height: var(--nav-height);
+
+  /* boilerplate compatibility – map to design tokens */
+  --background-color: light-dark(var(--color-parchment), var(--color-obsidian));
+  --light-color: var(--color-shaded);
+  --dark-color: var(--color-gray-500);
+  --text-color: var(--color-text);
+  --link-color: var(--color-link);
+  --link-hover-color: var(--color-link-hover);
+
+  /* clinical border */
+  --border-heritage: 1px solid light-dark(rgb(12 35 64 / 12%), rgb(247 249 251 / 12%));
+  --border-radius-heritage: 10px;
+
+  /* gradient and glow tokens */
+  --gradient-brand: linear-gradient(135deg, var(--color-rust) 0%, var(--color-gold) 100%);
+  --gradient-brand-dark: linear-gradient(135deg, var(--color-rust-bright) 0%, var(--color-gold) 100%);
+  --shadow-glow-rust: 0 0 40px rgb(12 35 64 / 20%);
+  --shadow-glow-gold: 0 0 40px rgb(0 163 173 / 20%);
+  --shadow-lift-m: 0 20px 40px -8px rgb(12 35 64 / 10%);
+  --shadow-lift-l: 0 30px 60px -12px rgb(12 35 64 / 15%);
+
+  /* easing presets – measured, calming */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-theme='light'],
+:host([data-theme='light']) {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'],
+:host([data-theme='dark']) {
+  color-scheme: dark;
+}
+
+@media (width >= 600px) {
+  :root,
+  :host {
+    --content-padding-inline: var(--space-l);
+    --main-block-space: var(--space-xl);
+    --section-block-space: var(--space-xl);
+  }
+}
+
+@media (width >= 900px) {
+  :root,
+  :host {
+    --body-font-size-m: 18px;
+    --body-font-size-s: 16px;
+    --body-font-size-xs: 14px;
+    --heading-font-size-xxl: 56px;
+    --heading-font-size-xl: 42px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 24px;
+    --heading-font-size-s: 20px;
+    --heading-font-size-xs: 18px;
+    --content-padding-inline: var(--space-xl);
+    --section-block-space: var(--space-3xl);
+  }
+}
+
+@media (width >= 1200px) {
+  :root,
+  :host {
+    --grid-container-width: 1200px;
+  }
+}
+
+/* optional scheme classes for forced light/dark */
+.light-scheme {
+  color-scheme: light;
+}
+
+.dark-scheme {
+  color-scheme: dark;
+}
+
+/* theme aliases from page metadata (theme: dark / light) */
+body.light,
+body.theme-light {
+  color-scheme: light;
+}
+
+body.dark,
+body.theme-dark {
+  color-scheme: dark;
+}
+
+/* fallback fonts – CLS reduction */
+@font-face {
+  font-family: roboto-condensed-fallback;
+  size-adjust: 88.82%;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: roboto-fallback;
+  size-adjust: 99.529%;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: inter-fallback;
+  size-adjust: 107%;
+  src: local('Arial');
+}
+
+/* ==========================================================================
+   Base layout and LCP-critical styles (boilerplate structure preserved)
+   ========================================================================== */
+
+html {
+  min-height: 100%;
+  scroll-padding-top: calc(var(--nav-height) + 1rem);
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: light-dark(rgb(0 163 173 / 20%), rgb(0 163 173 / 30%));
+  color: inherit;
+}
+
+body {
+  display: none;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root body {
+  min-height: 100vh;
+}
+
+body.appear {
+  display: block;
+}
+
+header {
+  height: var(--nav-height);
+}
+
+header .header,
+footer .footer {
+  visibility: hidden;
+}
+
+header .header[data-block-status="loaded"],
+footer .footer[data-block-status="loaded"] {
+  visibility: visible;
+}
+
+/* typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  line-height: var(--heading-line-height);
+  scroll-margin: 40px;
+}
+
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--heading-font-size-xl);
+  letter-spacing: -0.015em;
+}
+
+h3 { font-size: var(--heading-font-size-m); }
+h4 { font-size: var(--heading-font-size-s); }
+h5 { font-size: var(--heading-font-size-xs); }
+h6 { font-size: var(--heading-font-size-xs); }
+
+@media (width >= 600px) {
+  h3 { font-size: var(--heading-font-size-l); }
+  h4 { font-size: var(--heading-font-size-m); }
+  h5 { font-size: var(--heading-font-size-s); }
+}
+
+@media (width >= 1200px) {
+  h3 { font-size: var(--heading-font-size-xl); }
+}
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+main ul,
+main ol {
+  padding-inline-start: var(--space-l);
+}
+
+main ul ul,
+main ul ol,
+main ol ul,
+main ol ol {
+  padding-inline-start: var(--space-m);
+}
+
+code,
+pre {
+  font-size: var(--body-font-size-s);
+}
+
+pre {
+  padding: var(--space-l);
+  border-radius: var(--space-s);
+  background-color: var(--light-color);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+strong {
+  font-weight: 600;
+}
+
+/* links */
+a:any-link {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: light-dark(rgb(26 26 46 / 25%), rgb(247 249 251 / 25%));
+  overflow-wrap: break-word;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+  text-decoration-color: var(--link-hover-color);
+}
+
+/* buttons (AEM default content: links in standalone paragraphs) */
+p.button-container {
+  margin: var(--space-m) 0;
+}
+
+a.button:any-link,
+button.button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  max-width: 100%;
+  margin: 0;
+  border: 1px solid light-dark(var(--color-rust), var(--color-rust-bright));
+  border-radius: 999px;
+  padding: 14px 32px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  background-color: light-dark(var(--color-rust), var(--color-rust-bright));
+  background-image: none;
+  color: var(--color-light);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.25s var(--ease-out-smooth);
+}
+
+a.button:any-link::after,
+button.button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 15%) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.5s ease;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* Primary variant */
+a.button.primary:any-link,
+button.button.primary {
+  border-color: var(--color-rust);
+  background-color: var(--color-rust);
+  color: var(--color-light);
+}
+
+a.button:any-link:hover,
+a.button:any-link:focus-visible,
+button.button:hover,
+button.button:focus-visible {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-light);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px light-dark(rgb(0 163 173 / 25%), rgb(45 197 207 / 30%));
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a.button:any-link:hover::after,
+a.button:any-link:focus-visible::after,
+button.button:hover::after,
+button.button:focus-visible::after {
+  transform: translateX(120%);
+}
+
+a.button.primary:hover,
+a.button.primary:focus-visible,
+button.button.primary:hover,
+button.button.primary:focus-visible {
+  border-color: var(--color-gold);
+  background-color: var(--color-gold);
+  color: var(--color-light);
+}
+
+a.button:any-link:focus-visible,
+button.button:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+a.button[aria-disabled='true'],
+a.button[aria-disabled='true']:hover,
+a.button[aria-disabled='true']:focus-visible,
+button.button:disabled,
+button.button:disabled:hover,
+button.button:disabled:focus-visible {
+  background-color: var(--light-color);
+  border-color: var(--light-color);
+  color: var(--dark-color);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+a.button.secondary,
+button.button.secondary {
+  border: 1.5px solid var(--color-rust);
+  background-color: transparent;
+  color: var(--color-rust);
+}
+
+a.button.secondary:hover,
+a.button.secondary:focus-visible,
+button.button.secondary:hover,
+button.button.secondary:focus-visible {
+  border-color: var(--color-gold);
+  background-color: light-dark(rgb(0 163 173 / 6%), rgb(0 163 173 / 10%));
+  color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px light-dark(rgb(0 163 173 / 15%), rgb(0 163 173 / 20%));
+}
+
+/* main content area – use design tokens for rhythm */
+main > div {
+  margin: var(--main-block-space) var(--content-padding-inline);
+}
+
+main img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.icon {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+}
+
+.icon :is(img, svg) {
+  height: 100%;
+  width: 100%;
+}
+
+/* Global logo: adaptive color and consistent size everywhere */
+.icon.icon-logo {
+  width: 200px;
+  height: 45px;
+  color: light-dark(var(--color-rust), var(--color-rust-bright));
+}
+
+main .icon.icon-logo {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 10px;
+  margin-bottom: 4px;
+}
+
+/* Reserve space for unsized images to reduce CLS */
+main img:not([width], [height]) {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* sections – boilerplate structure with design tokens */
+main > .section {
+  margin: inherit;
+  padding-block: var(--space-xl);
+}
+
+main > .section:first-child {
+  padding-block-start: 0;
+
+  /* Reduce CLS: contain layout so section appearance causes less reflow.
+     Exclude social-share section: contain creates a containing block for position:fixed,
+     which would break the sticky share buttons. */
+  contain: layout;
+}
+
+main > .section:has(.social-share) {
+  contain: none;
+}
+
+main > .section > div {
+  max-width: var(--grid-container-width);
+  margin: auto;
+  padding: 0 var(--content-padding-inline);
+}
+
+/* section metadata */
+main .section.light,
+main .section.highlight {
+  background-color: var(--light-color);
+  margin: 0;
+  padding: var(--section-block-space) 0;
+}
+
+/* section-metadata style=divider: content-width (grid) border-bottom */
+main > .section.divider {
+  position: relative;
+}
+
+main > .section.divider::after {
+  content: '';
+  display: block;
+  max-width: var(--grid-container-width);
+  padding: 12px 0 24px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+main > .section.divider.center {
+    text-align: center;
+}
+
+/* section-metadata or block style: spacer utilities – add to section metadata or block styles for readability gaps */
+.spacer-top-s { margin-top: var(--space-s); }
+.spacer-top-m { margin-top: var(--space-m); }
+.spacer-top-l { margin-top: var(--space-l); }
+.spacer-bottom-s { margin-bottom: var(--space-s); }
+.spacer-bottom-m { margin-bottom: var(--space-m); }
+.spacer-bottom-l { margin-bottom: var(--space-l); }
+
+/* section-metadata style=gradient: brand gradient full-bleed section */
+main > .section.gradient {
+  background: var(--gradient-brand);
+  color: var(--color-parchment);
+  margin: 0;
+  padding: var(--space-3xl, var(--section-block-space)) 0;
+}
+
+main > .section.gradient * {
+  color: var(--color-parchment);
+}
+
+main > .section.gradient a:any-link {
+  color: var(--color-parchment);
+  text-decoration-color: rgb(255 255 255 / 40%);
+}
+
+main > .section.gradient a.button:any-link,
+main > .section.gradient button.button {
+  border-color: var(--color-parchment);
+  background-color: transparent;
+  background-image: none;
+  color: var(--color-parchment);
+  box-shadow: none;
+}
+
+main > .section.gradient a.button:any-link:hover,
+main > .section.gradient button.button:hover {
+  background-color: var(--color-parchment);
+  border-color: var(--color-parchment);
+  color: var(--color-rust);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
+}
+
+/* section-metadata style=ink: deep dark full-bleed section */
+main > .section.ink {
+  background-color: var(--color-ink);
+  color: var(--color-parchment);
+  margin: 0;
+  padding: var(--space-3xl, var(--section-block-space)) 0;
+}
+
+main > .section.ink * {
+  color: var(--color-parchment);
+}
+
+/* gradient-text utility: apply to any heading or span for brand gradient text */
+.gradient-text {
+  background: var(--gradient-brand);
+  background-clip: text;
+  color: transparent;
+}
