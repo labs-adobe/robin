@@ -9,25 +9,75 @@ function getHeight(block) {
   return Number.isFinite(value) && value > 0 ? value : DEFAULT_HEIGHT;
 }
 
-function getUrl(block) {
+function getConfig(block) {
   const anchor = block.querySelector('a[href]');
-  if (anchor) return anchor.href;
-  const text = block.textContent.trim();
-  try {
-    return new URL(text).href;
-  } catch {
-    return '';
+  const rows = [...block.children];
+  let url = '';
+  let label = '';
+
+  if (anchor) {
+    url = anchor.href;
+    const linkText = (anchor.textContent || '').trim();
+    if (linkText && !/^https?:\/\//i.test(linkText) && linkText.length < 120) {
+      label = linkText;
+    }
+  } else {
+    const text = block.textContent.trim();
+    try {
+      url = new URL(text).href;
+    } catch {
+      url = '';
+    }
   }
+
+  const titleRow = rows.find((row) => !row.querySelector('a[href]'));
+  if (titleRow) {
+    const titleText = titleRow.textContent.trim();
+    if (titleText) label = titleText;
+  }
+
+  if (!label && url) {
+    try {
+      label = new URL(url).hostname.replace(/^www\./, '');
+    } catch {
+      label = '';
+    }
+  }
+
+  return { url, label };
+}
+
+function buildLaunchAction(url, label) {
+  return createTag('a', {
+    class: 'button primary iframe-launch',
+    href: url,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  }, label || url);
+}
+
+function buildLaunchCard(url, label) {
+  const card = createTag('div', { class: 'iframe-launch-card' });
+  if (label) card.append(createTag('h3', { class: 'iframe-launch-title' }, label));
+  card.append(buildLaunchAction(url, label));
+  return card;
 }
 
 export default function decorate(block) {
-  const url = getUrl(block);
+  const { url, label } = getConfig(block);
   block.textContent = '';
   if (!url) return;
 
+  const isLinkMode = block.classList.contains('link');
+
+  if (isLinkMode) {
+    block.append(buildLaunchCard(url, label));
+    return;
+  }
+
   const height = getHeight(block);
   let hostname = '';
-  try { hostname = new URL(url).hostname; } catch { /* invalid URL — fall back to generic title */ }
+  try { hostname = new URL(url).hostname; } catch { /* fall back to generic title */ }
 
   const iframe = createTag('iframe', {
     src: url,
@@ -38,5 +88,8 @@ export default function decorate(block) {
     style: `height: ${height}px;`,
   });
 
-  block.append(iframe);
+  const fallback = createTag('div', { class: 'iframe-fallback' });
+  fallback.append(buildLaunchAction(url, label));
+
+  block.append(iframe, fallback);
 }

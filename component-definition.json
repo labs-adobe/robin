@@ -243,16 +243,20 @@
           "plugins": {
             "da": {
               "name": "iframe",
-              "rows": 1,
+              "rows": 2,
               "columns": 1,
               "fields": [
                 {
+                  "name": "title",
+                  "selector": "div:nth-child(1)>div"
+                },
+                {
                   "name": "url",
-                  "selector": "div>div>p>a[href]"
+                  "selector": "div:nth-child(2)>div>p>a[href]"
                 },
                 {
                   "name": "urlText",
-                  "selector": "div>div>p>a"
+                  "selector": "div:nth-child(2)>div>p>a"
                 }
               ]
             }

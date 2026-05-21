@@ -7,11 +7,12 @@
       "plugins": {
         "da": {
           "name": "iframe",
-          "rows": 1,
+          "rows": 2,
           "columns": 1,
           "fields": [
-            { "name": "url", "selector": "div>div>p>a[href]" },
-            { "name": "urlText", "selector": "div>div>p>a" }
+            { "name": "title", "selector": "div:nth-child(1)>div" },
+            { "name": "url", "selector": "div:nth-child(2)>div>p>a[href]" },
+            { "name": "urlText", "selector": "div:nth-child(2)>div>p>a" }
           ]
         }
       }
@@ -24,30 +25,38 @@
         {
           "component": "select",
           "name": "classes",
-          "label": "Height",
-          "description": "Iframe height (defaults to 600px)",
+          "label": "Mode",
+          "description": "Use Launch link for sites that block iframe embedding (e.g. starhealth.in)",
           "options": [
-            { "name": "Default (600px)", "value": "" },
-            { "name": "Short (400px)", "value": "h-400" },
-            { "name": "Medium (600px)", "value": "h-600" },
-            { "name": "Tall (800px)", "value": "h-800" },
-            { "name": "Extra tall (1000px)", "value": "h-1000" }
+            { "name": "Embed (iframe + open link)", "value": "" },
+            { "name": "Launch link (opens in new tab)", "value": "link" },
+            { "name": "Embed — short (400px)", "value": "h-400" },
+            { "name": "Embed — medium (600px)", "value": "h-600" },
+            { "name": "Embed — tall (800px)", "value": "h-800" },
+            { "name": "Embed — extra tall (1000px)", "value": "h-1000" }
           ]
         },
         {
           "component": "text",
-          "name": "urlText",
-          "label": "Link Text",
+          "name": "title",
+          "label": "Title",
           "valueType": "string",
-          "description": "Display text for the link (e.g. site name)"
+          "description": "Optional heading (e.g. Find a Network Hospital)"
+        },
+        {
+          "component": "text",
+          "name": "urlText",
+          "label": "Button / link label",
+          "valueType": "string",
+          "description": "Label for the open button (defaults to hostname if empty)"
         },
         {
           "component": "text",
           "name": "url",
-          "label": "Iframe URL",
+          "label": "URL",
           "valueType": "string",
           "required": true,
-          "description": "Full URL of the page to embed in an iframe"
+          "description": "Page URL to embed or open"
         }
       ]
     }
