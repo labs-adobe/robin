@@ -237,6 +237,28 @@
           }
         },
         {
+          "title": "Iframe",
+          "id": "iframe",
+          "model": "iframe",
+          "plugins": {
+            "da": {
+              "name": "iframe",
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "url",
+                  "selector": "div>div>p>a[href]"
+                },
+                {
+                  "name": "urlText",
+                  "selector": "div>div>p>a"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Journey Map",
           "id": "journey-map",
           "model": "journey-map",

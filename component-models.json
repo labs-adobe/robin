@@ -330,6 +330,54 @@
     ]
   },
   {
+    "id": "iframe",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Height",
+        "description": "Iframe height (defaults to 600px)",
+        "options": [
+          {
+            "name": "Default (600px)",
+            "value": ""
+          },
+          {
+            "name": "Short (400px)",
+            "value": "h-400"
+          },
+          {
+            "name": "Medium (600px)",
+            "value": "h-600"
+          },
+          {
+            "name": "Tall (800px)",
+            "value": "h-800"
+          },
+          {
+            "name": "Extra tall (1000px)",
+            "value": "h-1000"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "urlText",
+        "label": "Link Text",
+        "valueType": "string",
+        "description": "Display text for the link (e.g. site name)"
+      },
+      {
+        "component": "text",
+        "name": "url",
+        "label": "Iframe URL",
+        "valueType": "string",
+        "required": true,
+        "description": "Full URL of the page to embed in an iframe"
+      }
+    ]
+  },
+  {
     "id": "journey-map-step",
     "fields": [
       {
